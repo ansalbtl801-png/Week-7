@@ -1,0 +1,26 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+df = pd.read_csv("day31_seaborn.csv")
+
+
+sns.histplot(df["age"], bins=30, kde=False) # One line with nice defaults
+plt.title("Age Distribution")
+plt.show()
+
+
+sns.kdeplot(data=df, x="income", hue="segment", fill=True, common_norm=False, alpha=0.4)
+plt.title("Income Density by Segment")
+plt.show()
+
+
+sns.boxplot(data=df, x="segment", y="income")
+plt.title("Income by Segment — Boxplot")
+plt.show()
+
+
+sns.countplot(data=df, x="age")
+plt.title("Segment Distribution")
+plt.show()
