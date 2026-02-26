@@ -1,0 +1,15 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+df = pd.read_csv("day33_corr.csv")
+
+
+corr_matrix = df.corr()
+print(corr_matrix)
+
+
+sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", vmin=-1, vmax=1)
+plt.title("Correlation Matrix — Heatmap")
+plt.show()
