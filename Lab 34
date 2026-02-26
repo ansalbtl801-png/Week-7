@@ -1,0 +1,28 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+df = pd.read_csv("day34_patterns.csv")
+g = sns.relplot(data=df, x="time", y="value", col="season", hue="segment",
+kind="scatter", alpha=0.4, height=3)
+g.fig.suptitle("Value vs Time — Faceted by Season", y=1.05)
+plt.show()
+
+
+df["bucket"] = pd.cut(df["time"], bins=5, labels=["T1","T2","T3","T4","T5"])
+sns.boxplot(data=df, x="bucket", y="value", hue="segment")
+plt.title("Value by Time Bucket and Segment")
+plt.show()
+
+
+
+sns.regplot(data=df, x="time", y="value", scatter_kws={"alpha": 0.3}, line_kws={"color": "red"})
+plt.title("Value vs Time — Regression Trend Overlay")
+plt.show()
+
+
+g = sns.lmplot(data=df, x="time", y="value", hue="segment", col="season",
+scatter_kws={"alpha": 0.3}, height=3)
+g.fig.suptitle("Grouped Trends by Segment and Season", y=1.05)
+plt.show()
